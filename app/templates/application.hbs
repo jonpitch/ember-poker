@@ -4,4 +4,47 @@
   </div>
 {{/paper-toolbar}}
 
-{{outlet}}
+<div class="container">
+  <div class="row">
+    <div class="col-lg-5">
+      <h3>About</h3>
+      <p>Easily manage your home poker tournament. Keep track of rounds, time remaining, blinds and antes.</p>
+
+      <h3>Get Started</h3>
+      {{#paper-button raised=true classNames="md-primary"}}Create a Game{{/paper-button}}
+    </div>
+    <div class="col-lg-7">
+      <h3>Currently Running Games</h3>
+
+      {{#paper-content classNames="md-whiteframe-z1 list-demo"}}
+        {{#paper-list}}
+          {{#each game in model}}
+            {{#paper-item}}
+              {{#paper-tile-left}}
+                <!-- TODO This is a placeholder for now -->
+                {{paper-icon icon="check"}}
+              {{/paper-tile-left}}
+
+              {{#paper-tile-content}}
+                <h3>{{game.name}}</h3>
+                <h4>{{game.startingSmallBlind}}/{{game.startingBigBlind}}</h4>
+              {{/paper-tile-content}}
+            {{/paper-item}}
+            {{paper-divider}}
+          {{else}}
+          {{#paper-item}}
+            {{#paper-tile-left}}
+
+            {{/paper-tile-left}}
+
+            {{#paper-tile-content}}
+              <h3>None</h3>
+            {{/paper-tile-content}}
+          {{/paper-item}}
+          {{/each}}
+        {{/paper-list}}
+      {{/paper-content}}
+
+    </div>
+  </div>
+</div>
