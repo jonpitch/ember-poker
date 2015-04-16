@@ -1,7 +1,7 @@
 {
   "name": "ember-poker",
-  "version": "0.0.0",
-  "description": "Small description for ember-poker goes here",
+  "version": "0.0.1",
+  "description": "Simple home poker tournament management",
   "private": true,
   "directories": {
     "doc": "doc",
@@ -16,13 +16,16 @@
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Jon Pitcherella",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.2",
+    "broccoli-autoprefixer": "^2.1.0",
+    "broccoli-sass": "^0.6.4",
     "ember-cli": "0.2.3",
     "ember-cli-app-version": "0.3.3",
     "ember-cli-babel": "^5.0.0",
+    "ember-cli-bootstrap-sassy": "0.0.17",
     "ember-cli-content-security-policy": "0.4.0",
     "ember-cli-dependency-checker": "0.0.8",
     "ember-cli-htmlbars": "0.7.4",
@@ -31,6 +34,8 @@
     "ember-cli-qunit": "0.3.10",
     "ember-cli-uglify": "1.0.1",
     "ember-data": "1.0.0-beta.16.1",
-    "ember-export-application-global": "^1.0.2"
+    "ember-export-application-global": "^1.0.2",
+    "ember-paper": "0.0.21",
+    "emberfire": "1.4.4"
   }
 }
