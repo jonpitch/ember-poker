@@ -1,50 +1,27 @@
-{{#paper-toolbar}}
-  <div class="container">
-    <h1>Ember Poker</h1>
-  </div>
-{{/paper-toolbar}}
+{{#md-navbar name='Ember Poker'}}
+  <!-- TODO -->
+{{/md-navbar}}
 
 <div class="container">
-  <div class="row">
-    <div class="col-lg-5">
-      <h3>About</h3>
-      <p>Easily manage your home poker tournament. Keep track of rounds, time remaining, blinds and antes.</p>
+  {{outlet}}
+</div>
 
-      <h3>Get Started</h3>
-      {{#paper-button raised=true classNames="md-primary"}}Create a Game{{/paper-button}}
-    </div>
-    <div class="col-lg-7">
-      <h3>Currently Running Games</h3>
-
-      {{#paper-content classNames="md-whiteframe-z1 list-demo"}}
-        {{#paper-list}}
-          {{#each game in model}}
-            {{#paper-item}}
-              {{#paper-tile-left}}
-                <!-- TODO This is a placeholder for now -->
-                {{paper-icon icon="check"}}
-              {{/paper-tile-left}}
-
-              {{#paper-tile-content}}
-                <h3>{{game.name}}</h3>
-                <h4>{{game.startingSmallBlind}}/{{game.startingBigBlind}}</h4>
-              {{/paper-tile-content}}
-            {{/paper-item}}
-            {{paper-divider}}
-          {{else}}
-          {{#paper-item}}
-            {{#paper-tile-left}}
-
-            {{/paper-tile-left}}
-
-            {{#paper-tile-content}}
-              <h3>None</h3>
-            {{/paper-tile-content}}
-          {{/paper-item}}
-          {{/each}}
-        {{/paper-list}}
-      {{/paper-content}}
-
+<footer class="page-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Something</h5>
+          <p class="grey-text text-lighten-4">Something</p>
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <h5 class="white-text">Contribute</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="#!">Buy me a beer</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Fork me on GitHub</a></li>
+          </ul>
+      </div>
     </div>
   </div>
-</div>
+  {{#md-copyright text='Jon Pitcherella' startYear=2015}}
+  {{/md-copyright}}
+</footer>

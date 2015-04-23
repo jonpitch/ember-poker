@@ -7,9 +7,9 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
       'connect-src': "'self' wss://*.firebaseio.com",
       'default-src': "'none'",
-      'script-src': "'self'",
+      'script-src': "'self' 'unsafe-eval'",
       'font-src': "'self' https://fonts.gstatic.com",
-      'img-src': "'self'",
+      'img-src': "'self' data:",
       'media-src': "'self'"
     },
     firebase: 'https://ember-poker-dev.firebaseio.com/',

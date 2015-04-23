@@ -6,6 +6,5 @@ export default DS.Model.extend({
   startingSmallBlind: DS.attr('number'),
   startingBigBlind: DS.attr('number'),
   hasAnte: DS.attr('boolean')
-
   
 });

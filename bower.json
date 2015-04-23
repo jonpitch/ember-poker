@@ -14,6 +14,9 @@
     "qunit": "~1.17.1",
     "firebase": "^2.1.0",
     "hammerjs": "~2.0.4",
-    "bootstrap-sass": "~3.3.4"
+    "materialize": "~0.96.0"
+  },
+  "resolutions": {
+    "jquery": "^1.11.1"
   }
 }
