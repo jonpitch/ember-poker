@@ -1,9 +1,10 @@
-nav {
-  position: fixed;
-  top: 0;
-  z-index: 1000;
+body > .ember-view {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 main {
-  margin-top: 96px;
+  flex: 1 0 auto;
+  margin-top: $vertical-space;
 }

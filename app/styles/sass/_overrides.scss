@@ -1,0 +1,14 @@
+$primary-color: color("blue-grey", "base");
+$primary-color-light: false;
+$primary-color-dark: false;
+@if not $primary-color-light {
+  $primary-color-light: lighten($primary-color, 15%);
+}
+@if not $primary-color-dark {
+  $primary-color-dark: darken($primary-color, 15%);
+}
+$secondary-color: color("deep-orange", "lighten-1");
+$success-color: color("green", "base");
+$error-color: color("red", "base");
+$link-color: color("light-blue", "darken-1");
+$footer-bg-color: $primary-color;
