@@ -10,7 +10,8 @@
         {{#md-card-collapsible accordion=false}}
           {{#each game in model}}
             {{#md-collapsible icon="mdi-image-filter-drama" title=game.name}}
-              Lorem ipsum dolor sit amet.
+              Lorem ipsum dolor sit amet.<br />
+              {{#link-to 'game.index' game}}{{md-btn text='Start Game'}}{{/link-to}}
             {{/md-collapsible}}
           {{/each}}
         {{/md-card-collapsible}}
