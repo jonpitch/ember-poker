@@ -11,7 +11,7 @@ export default Ember.Controller.extend({
 
     // end the current game
     endGame: function () {
-      
+
     }
   }
 });
