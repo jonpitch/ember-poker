@@ -4,17 +4,6 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'ember-poker',
     environment: environment,
-    contentSecurityPolicy: {
-      'connect-src': "'self' wss://*.firebaseio.com",
-      'default-src': "'none'",
-      'script-src': "'self' 'unsafe-eval' *.firebaseio.com",
-      'font-src': "'self' https://fonts.gstatic.com",
-      'img-src': "'self' data:",
-      'media-src': "'self'",
-      'style-src': "'self' 'unsafe-inline'",
-      'frame-src': "'self' *.firebaseio.com"
-    },
-    firebase: 'https://ember-poker-dev.firebaseio.com/',
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {

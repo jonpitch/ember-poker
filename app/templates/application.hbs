@@ -1,27 +1,3 @@
-{{#md-navbar name='Ember Poker'}}
-  <li>{{link-to 'Games' 'games.index'}}</li>
-{{/md-navbar}}
+<h2 id="title">Welcome to Ember</h2>
 
-<main>
-  {{outlet}}
-</main>
-
-<footer class="page-footer">
-  <div class="container">
-    <div class="row">
-      <div class="col l6 s12">
-        <h5 class="white-text">Something</h5>
-          <p class="grey-text text-lighten-4">Something</p>
-      </div>
-      <div class="col l4 offset-l2 s12">
-        <h5 class="white-text">Contribute</h5>
-          <ul>
-            <li><a class="grey-text text-lighten-3" href="#!">Buy me a beer</a></li>
-            <li><a class="grey-text text-lighten-3" href="https://github.com/jonpitch/ember-poker">Fork Ember Poker on GitHub</a></li>
-          </ul>
-      </div>
-    </div>
-  </div>
-  {{#md-copyright text='Jon Pitcherella' startYear=2015}}
-  {{/md-copyright}}
-</footer>
+{{outlet}}
