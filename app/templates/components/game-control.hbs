@@ -1,18 +1,41 @@
 <div class="row">
   <div class="col s12">
-    <a class="waves-effect waves-light btn"><i class="material-icons right">play_arrow</i>Play</a>
-    <a class="waves-effect waves-light btn"><i class="material-icons right">stop</i>End Game</a>
+    <a class="waves-effect waves-light btn" {{action "go"}}>
+      {{#if gameInProgress}}
+        <i class="material-icons right">pause</i>Pause
+      {{else}}
+        <i class="material-icons right">play_arrow</i>Play
+      {{/if}}
+    </a>
+    <a class="waves-effect waves-light btn" {{action "stop"}}>
+      <i class="material-icons right">stop</i>End Game
+    </a>
   </div>
 </div>
 
 <div class="row">
   <div class="col s12">
-    <h1>
-      00:00:00 {{currentSmall}}/{{currentBig}}
-      {{#if currentAnte}}
-        +{{currentAnte}}
-      {{/if}}
-    </h1>
+    <div id="round-time-elapsed">
+      <div class="row">
+        <div class="col l m1 s1 round-elapsed-time time">
+          {{liquid-bind roundHours}}
+        </div>
+        <span class="col time">:</span>
+        <div class="col l1 m1 s1 round-elapsed-time time">
+          {{liquid-bind roundMinutes}}
+        </div>
+        <span class="col time">:</span>
+        <div class="col l1 m1 s1 round-elapsed-time time">
+          {{liquid-bind roundSeconds}}
+        </div>
+        <div class="col l4 m4 s4">
+          {{currentSmall}}/{{currentBig}}
+          {{#if currentAnte}}
+            +{{currentAnte}}
+          {{/if}}
+        </div>
+      </div>
+    </div>
     <h5>
       Up Next: {{nextSmall}}/{{nextBig}}
       {{#if nextAnte}}

@@ -64,16 +64,16 @@ export default Ember.Component.extend({
   }.property('hasAnte', 'round', 'smallIncrement', 'anteThreshold', 'anteCounter'),
 
   // time properties
-  gameStarted: true,
-  gameInProgress: true,
+  gameStarted: false,
+  gameInProgress: false,
   totalGameSeconds: 0,
   totalRoundSeconds: 0,
-  gameSeconds: 0,
-  gameMinutes: 0,
-  gameHours: 0,
-  roundSeconds: 0,
-  roundMinutes: 0,
-  roundHours: 0,
+  gameSeconds: '00',
+  gameMinutes: '00',
+  gameHours: '00',
+  roundSeconds: '00',
+  roundMinutes: '00',
+  roundHours: '00',
 
   // keep track of time passed
   clockObserver: function() {
@@ -102,13 +102,50 @@ export default Ember.Component.extend({
     const minutes = Math.floor((total - (hours * 3600)) / 60);
     const seconds = total - (hours * 3600) - (minutes * 60);
 
-    this.set('roundSeconds', seconds);
-    this.set('roundMinutes', minutes);
-    this.set('roundHours', hours);
+    this.set('roundSeconds', this.pad(seconds, 2));
+    this.set('roundMinutes', this.pad(minutes, 2));
+    this.set('roundHours', this.pad(hours, 2));
+
+    // TODO show a visual warning when the round is about to increase
   }.observes('totalRoundSeconds'),
 
   pad: function(value, length) {
     return (value.toString().length < length) ? this.pad('0' + value, length) : value;
+  },
+
+  actions: {
+
+    // user is starting or resuming the game
+    go: function() {
+      // check if it's the first start of the game
+      if (!this.get('gameStarted')) {
+        this.set('gameStarted', true);
+      }
+
+      // play or resume
+      this.set('gameInProgress', !this.get('gameInProgress'));
+    },
+
+    // user is stopping the game
+    stop: function() {
+      // TODO prompt user
+      this.setProperties({
+        gameStarted: false,
+        gameInProgress: false,
+        totalGameSeconds: 0,
+        totalRoundSeconds: 0,
+        gameSeconds: '00',
+        gameMinutes: '00',
+        gameHours: '00',
+        roundSeconds: '00',
+        roundMinutes: '00',
+        roundHours: '00',
+      });
+
+      // redirect back to home screen
+      const appController = this.container.lookup('controller:application');
+      appController.transitionToRoute('index');
+    }
   }
 
 });

@@ -12,4 +12,10 @@ export default function() {
     this.childOf('.game-elapsed-time'),
     this.use('toUp')
   );
+
+  // elapsed round clock
+  this.transition(
+    this.childOf('.round-elapsed-time'),
+    this.use('toUp')
+  );
 }
