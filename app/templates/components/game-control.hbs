@@ -7,9 +7,18 @@
 
 <div class="row">
   <div class="col s12">
-    <h1>00:00:00 5/10 +0</h1>
-    <h5>Up Next: 10/20 +5</h5>
-
+    <h1>
+      00:00:00 {{currentSmall}}/{{currentBig}}
+      {{#if currentAnte}}
+        +{{currentAnte}}
+      {{/if}}
+    </h1>
+    <h5>
+      Up Next: {{nextSmall}}/{{nextBig}}
+      {{#if nextAnte}}
+        +{{nextAnte}}
+      {{/if}}
+    </h5>
     <h6>Elapsed: 00:00:00</h6>
   </div>
 </div>

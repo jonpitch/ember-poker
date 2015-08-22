@@ -3,27 +3,33 @@
     <div class="row">
       {{! small blind }}
       <div class="input-field col l6 m6 s12">
-        <input id="small-blind" type="text" class="validate" />
+        {{input type="number" class="validate" value=smallBlind}}
         <label for="small-blind">Small Blind</label>
       </div>
 
       {{! big blind }}
       <div class="input-field col l6 m6 s12">
-        <input disabled id="big-blind" type="text" class="validate" />
+        {{input type="number" class="validate" value=bigBlind disabled=true}}
         <label for="big-blind">Big Blind</label>
       </div>
     </div>
-    <div class="row">
+    <div class="row valign-wrapper">
+      {{! minutes per round }}
+      <div class="input-field col l6 m6 s12">
+        {{input type="number" class="validate" value=minutes}}
+        <label for="round-minutes">Minutes Per Round</label>
+      </div>
+
       {{! use ante? }}
-      <div class="col s12">
-        <input type="checkbox" id="ante" />
-        <label for="ante">Ante?</label>
+      <div class="col l6 m6 s12 valign">
+        {{input type="checkbox" checked=ante}}
+        <label {{action "toggleAnte"}} for="ante">Ante?</label>
       </div>
     </div>
     <div class="row">
       {{! start game }}
       <div class="col s12 right-align">
-        {{link-to 'Start Game' 'game' classNames="waves-effect waves-light btn"}}
+        <a {{action "createGame"}} class="waves-effect waves-light btn">Create Game</a>
       </div>
     </div>
   </form>
