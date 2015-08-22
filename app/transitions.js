@@ -6,4 +6,10 @@ export default function() {
     this.use('toLeft'),
     this.reverse('toRight')
   );
+
+  // elapsed time clock
+  this.transition(
+    this.childOf('.game-elapsed-time'),
+    this.use('toUp')
+  );
 }

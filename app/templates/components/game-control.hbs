@@ -19,6 +19,20 @@
         +{{nextAnte}}
       {{/if}}
     </h5>
-    <h6>Elapsed: 00:00:00</h6>
+    <div id="game-time-elapsed">
+      <div class="row">
+        <div class="col l m1 s1 game-elapsed-time time">
+          {{liquid-bind gameHours}}
+        </div>
+        <span class="col time">:</span>
+        <div class="col l1 m1 s1 game-elapsed-time time">
+          {{liquid-bind gameMinutes}}
+        </div>
+        <span class="col time">:</span>
+        <div class="col l1 m1 s1 game-elapsed-time time">
+          {{liquid-bind gameSeconds}}
+        </div>
+      </div>
+    </div>
   </div>
 </div>

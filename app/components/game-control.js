@@ -61,6 +61,54 @@ export default Ember.Component.extend({
       const counter = this.get('anteCounter');
       return round > threshold ? (counter + 1) * increment : null;
     }
-  }.property('hasAnte', 'round', 'smallIncrement', 'anteThreshold', 'anteCounter')
+  }.property('hasAnte', 'round', 'smallIncrement', 'anteThreshold', 'anteCounter'),
+
+  // time properties
+  gameStarted: true,
+  gameInProgress: true,
+  totalGameSeconds: 0,
+  totalRoundSeconds: 0,
+  gameSeconds: 0,
+  gameMinutes: 0,
+  gameHours: 0,
+  roundSeconds: 0,
+  roundMinutes: 0,
+  roundHours: 0,
+
+  // keep track of time passed
+  clockObserver: function() {
+    if (this.get('gameStarted')) {
+      this.set('totalGameSeconds', this.get('totalGameSeconds') + 1);
+      if (this.get('gameInProgress')) {
+        this.set('totalRoundSeconds', this.get('totalRoundSeconds') + 1);
+      }
+    }
+  }.observes('clock.pulse'),
+
+  gameClock: function() {
+    const total = this.get('totalGameSeconds');
+    const hours = Math.floor(total / 3600);
+    const minutes = Math.floor((total - (hours * 3600)) / 60);
+    const seconds = total - (hours * 3600) - (minutes * 60);
+
+    this.set('gameSeconds', this.pad(seconds, 2));
+    this.set('gameMinutes', this.pad(minutes, 2));
+    this.set('gameHours', this.pad(hours, 2));
+  }.observes('totalGameSeconds'),
+
+  roundClock: function() {
+    const total = this.get('totalRoundSeconds');
+    const hours = Math.floor(total / 3600);
+    const minutes = Math.floor((total - (hours * 3600)) / 60);
+    const seconds = total - (hours * 3600) - (minutes * 60);
+
+    this.set('roundSeconds', seconds);
+    this.set('roundMinutes', minutes);
+    this.set('roundHours', hours);
+  }.observes('totalRoundSeconds'),
+
+  pad: function(value, length) {
+    return (value.toString().length < length) ? this.pad('0' + value, length) : value;
+  }
 
 });
