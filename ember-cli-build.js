@@ -28,6 +28,15 @@ module.exports = function(defaults) {
   app.import('bower_components/materialize/dist/font/roboto/Roboto-Regular.woff2', {
     destDir: 'font/roboto'
   });
+  app.import('bower_components/materialize/dist/font/roboto/Roboto-Light.tff', {
+    destDir: 'font/roboto'
+  });
+  app.import('bower_components/materialize/dist/font/roboto/Roboto-Light.woff', {
+    destDir: 'font/roboto'
+  });
+  app.import('bower_components/materialize/dist/font/roboto/Roboto-Light.woff2', {
+    destDir: 'font/roboto'
+  });
   app.import('bower_components/materialize/dist/js/materialize.min.js');
 
   return app.toTree();
