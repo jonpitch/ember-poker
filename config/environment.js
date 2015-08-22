@@ -9,10 +9,10 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
       'default-src': "'self'",
       'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
-      'font-src': "'self' data:",
+      'font-src': "'self' data: https://fonts.gstatic.com",
       'connect-src': "'self'",
       'img-src': "'self' data:",
-      'style-src': "'self' 'unsafe-inline'",
+      'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com",
       'media-src': "'self'"
     },
     EmberENV: {
