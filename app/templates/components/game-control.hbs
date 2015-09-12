@@ -1,61 +1,93 @@
-<div class="row">
-  <div class="col s12">
-    <a class="waves-effect waves-light btn" {{action "go"}}>
-      {{#if gameInProgress}}
-        <i class="material-icons right">pause</i>Pause
-      {{else}}
-        <i class="material-icons right">play_arrow</i>Play
-      {{/if}}
-    </a>
-    <a class="waves-effect waves-light btn" {{action "stop"}}>
-      <i class="material-icons right">stop</i>End Game
-    </a>
-  </div>
-</div>
+<div class="card">
 
-<div class="row">
-  <div class="col s12">
-    <div id="round-time-elapsed">
-      <div class="row">
-        <div class="col l m1 s1 round-elapsed-time time">
-          {{liquid-bind roundHours}}
-        </div>
-        <span class="col time">:</span>
-        <div class="col l1 m1 s1 round-elapsed-time time">
-          {{liquid-bind roundMinutes}}
-        </div>
-        <span class="col time">:</span>
-        <div class="col l1 m1 s1 round-elapsed-time time">
-          {{liquid-bind roundSeconds}}
-        </div>
-        <div class="col l4 m4 s4">
-          {{currentSmall}}/{{currentBig}}
-          {{#if currentAnte}}
-            +{{currentAnte}}
-          {{/if}}
-        </div>
+  {{! setup game }}
+  <div class="card-content">
+    <div class="row">
+      {{! small blind }}
+      <div class="input-field col s6">
+        {{input elementId="small-blind" type="number" classNames="validate" value=small}}
+        <label for="small-blind">Small Blind</label>
+      </div>
+
+      {{! big blind }}
+      <div class="input-field col s6">
+        {{input elementId="big-blind" type="number" classNames="validate" disabled="disabled" value=big}}
+        <label for="big-blind">Big Blind</label>
       </div>
     </div>
-    <h5>
-      Up Next: {{nextSmall}}/{{nextBig}}
-      {{#if nextAnte}}
-        +{{nextAnte}}
-      {{/if}}
-    </h5>
-    <div id="game-time-elapsed">
-      <div class="row">
-        <div class="col l m1 s1 game-elapsed-time time">
-          {{liquid-bind gameHours}}
-        </div>
-        <span class="col time">:</span>
-        <div class="col l1 m1 s1 game-elapsed-time time">
-          {{liquid-bind gameMinutes}}
-        </div>
-        <span class="col time">:</span>
-        <div class="col l1 m1 s1 game-elapsed-time time">
-          {{liquid-bind gameSeconds}}
-        </div>
+
+    <div class="row">
+      {{! round time }}
+      <div class="input-field col s6">
+        {{input elementId="round-time" type="number" classNames="validate" value=time}}
+        <label for="round-time">Round Time (in minutes)</label>
+      </div>
+
+      {{! ante }}
+      <div class="input-field col s6">
+        {{input elementId="has-ante" type="checkbox" checked=ante}}
+        <label for="has-ante">Ante?</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 right-align">
+        {{! start game}}
+        <a class="waves-effect waves-light btn activator">Start Game</a>
       </div>
     </div>
   </div>
+
+  {{! game controls }}
+  <div class="card-reveal">
+
+    <div class="row">
+      <div class="col s10">
+        <a class="waves-effect waves-light btn" {{action 'start'}}>
+          <i class="{{if roundInProgress 'mdi-av-pause' 'mdi-av-play-arrow'}}"></i>
+        </a>
+        <a class="waves-effect waves-light btn" {{action 'stop'}}>
+          <i class="mdi-av-stop"></i>
+        </a>
+      </div>
+      <div class="col s2 grey-text">
+        {{gameHours}}:{{gameMinutes}}:{{gameSeconds}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <div class="row">
+          <div class="col l1 m1 s1 round-elapsed-time">
+            {{liquid-bind roundHours}}
+          </div>
+          <span class="col">:</span>
+          <div class="col l1 m1 s1 round-elapsed-time">
+            {{liquid-bind roundMinutes}}
+          </div>
+          <span class="col">:</span>
+          <div class="col l1 m1 s1 round-elapsed-time">
+            {{liquid-bind roundSeconds}}
+          </div>
+        </div>
+      </div>
+      <div class="col s12">
+        {{! TODO }}
+        5/10 +0
+      </div>
+      <div class="col s12">
+        {{! TODO }}
+        10/20 +1
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        {{! here for posterity, used to close the revealed card }}
+        <span class="card-title"></span>
+      </div>
+    </div>
+
+  </div>
+
 </div>

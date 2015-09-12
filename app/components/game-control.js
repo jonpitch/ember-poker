@@ -4,89 +4,25 @@ export default Ember.Component.extend({
 
   tagName: 'game-control',
 
-  // properties of model
-  round: 1,
-  anteThreshold: 4,
-  anteCounter: 1,
-  smallIncrement: Ember.computed.oneWay('game.small'),
-  bigIncrement: Ember.computed.oneWay('game.big'),
-  hasAnte: Ember.computed.oneWay('game.ante'),
-  minutes: Ember.computed.oneWay('game.minutes'),
-
-  currentSmall: function() {
-    const round = this.get('round');
-    const increment = this.get('smallIncrement');
-    return round * increment;
-  }.property('round', 'smallIncrement'),
-
-  currentBig: function() {
-    const round = this.get('round');
-    const increment = this.get('bigIncrement');
-    return round * increment;
-  }.property('round', 'bigIncrement'),
-
-  currentAnte: function() {
-    const hasAnte = this.get('hasAnte');
-    if (!hasAnte) {
-      return null;
-    } else {
-      const round = this.get('round');
-      const increment = this.get('smallIncrement');
-      const threshold = this.get('anteThreshold');
-      const counter = this.get('anteCounter');
-      return round > threshold ? counter * increment : null;
-    }
-  }.property('hasAnte', 'round', 'smallIncrement', 'anteThreshold', 'anteCounter'),
-
-  nextSmall: function() {
-    const current = this.get('currentSmall');
-    const increment = this.get('smallIncrement');
-    return current + increment;
-  }.property('smallIncrement', 'currentSmall'),
-
-  nextBig: function() {
-    const current = this.get('currentBig');
-    const increment = this.get('bigIncrement');
-    return current + increment;
-  }.property('bigIncrement', 'currentBig'),
-
-  nextAnte: function() {
-    const hasAnte = this.get('hasAnte');
-    if (!hasAnte) {
-      return null;
-    } else {
-      const round = this.get('round');
-      const increment = this.get('smallIncrement');
-      const threshold = this.get('anteThreshold');
-      const counter = this.get('anteCounter');
-      return round > threshold ? (counter + 1) * increment : null;
-    }
-  }.property('hasAnte', 'round', 'smallIncrement', 'anteThreshold', 'anteCounter'),
-
-  // time properties
+  // basic game info
+  small: 5,
+  big: function() {
+    return this.get('small') * 2;
+  }.property('small'),
+  time: 20,
+  ante: true,
   gameStarted: false,
-  gameInProgress: false,
-  totalGameSeconds: 0,
-  totalRoundSeconds: 0,
-  gameSeconds: '00',
-  gameMinutes: '00',
+  roundInProgress: false,
+
   gameHours: '00',
-  roundSeconds: '00',
-  roundMinutes: '00',
+  gameMinutes: '00',
+  gameSeconds: '00',
   roundHours: '00',
+  roundMinutes: '00',
+  roundSeconds: '00',
 
-  // keep track of time passed
-  clockObserver: function() {
-    if (this.get('gameStarted')) {
-      this.set('totalGameSeconds', this.get('totalGameSeconds') + 1);
-      if (this.get('gameInProgress')) {
-        this.set('totalRoundSeconds', this.get('totalRoundSeconds') + 1);
-      }
-    }
-  }.observes('clock.pulse'),
-
-  gameClock: function() {
-    const total = this.get('totalGameSeconds');
+  gameTimer: function() {
+    const total = this.get('gameClock');
     const hours = Math.floor(total / 3600);
     const minutes = Math.floor((total - (hours * 3600)) / 60);
     const seconds = total - (hours * 3600) - (minutes * 60);
@@ -94,10 +30,10 @@ export default Ember.Component.extend({
     this.set('gameSeconds', this.pad(seconds, 2));
     this.set('gameMinutes', this.pad(minutes, 2));
     this.set('gameHours', this.pad(hours, 2));
-  }.observes('totalGameSeconds'),
+  }.observes('gameClock'),
 
-  roundClock: function() {
-    const total = this.get('totalRoundSeconds');
+  roundTimer: function() {
+    const total = this.get('roundClock');
     const hours = Math.floor(total / 3600);
     const minutes = Math.floor((total - (hours * 3600)) / 60);
     const seconds = total - (hours * 3600) - (minutes * 60);
@@ -107,45 +43,78 @@ export default Ember.Component.extend({
     this.set('roundHours', this.pad(hours, 2));
 
     // TODO show a visual warning when the round is about to increase
-  }.observes('totalRoundSeconds'),
-
-  pad: function(value, length) {
-    return (value.toString().length < length) ? this.pad('0' + value, length) : value;
-  },
+    // TODO round timer should count down not up, user preference for either?
+  }.observes('roundClock'),
 
   actions: {
 
-    // user is starting or resuming the game
-    go: function() {
-      // check if it's the first start of the game
-      if (!this.get('gameStarted')) {
+    // start game clock, start/resume round timer
+    start() {
+      const started = this.get('gameStarted');
+      if (!started) {
         this.set('gameStarted', true);
       }
 
-      // play or resume
-      this.set('gameInProgress', !this.get('gameInProgress'));
+      this.set('roundInProgress', !this.get('roundInProgress'));
     },
 
-    // user is stopping the game
-    stop: function() {
-      // TODO prompt user
+    // end the game
+    stop() {
+      // TODO prompt user if they're sure
+
+      // reset
       this.setProperties({
+        _round: 0,
+        _game: 0,
         gameStarted: false,
-        gameInProgress: false,
-        totalGameSeconds: 0,
-        totalRoundSeconds: 0,
-        gameSeconds: '00',
-        gameMinutes: '00',
+        roundInProgress: false,
         gameHours: '00',
-        roundSeconds: '00',
-        roundMinutes: '00',
+        gameMinutes: '00',
+        gameSeconds: '00',
         roundHours: '00',
+        roundMinutes: '00',
+        roundSeconds: '00',
+        small: 5,
+        time: 20,
+        ante: true
       });
 
-      // redirect back to home screen
-      const appController = this.container.lookup('controller:application');
-      appController.transitionToRoute('index');
+      // remove card reveal
+      this.$('.card-title').click();
     }
-  }
+  },
+
+  // timer functionality
+  _seconds: 0,
+  _round: 0,
+  _game: 0,
+  gameClock: Ember.computed.oneWay('_game').readOnly(),
+  roundClock: Ember.computed.oneWay('_round').readOnly(),
+
+  tick: function() {
+    setTimeout(Ember.run.bind(this, () => {
+      const seconds = this.get('_seconds');
+      const game = this.get('_game');
+      const round = this.get('_round');
+
+      // pulse
+      this.set('_seconds', seconds + 1);
+
+      // keep track of total time if game has started
+      if (this.get('gameStarted')) {
+        this.set('_game', game + 1);
+      }
+
+      // if game has not been paused, track round time
+      if (this.get('roundInProgress')) {
+        this.set('_round', round + 1);
+      }
+    }), 1000);
+  }.observes('_seconds').on('init'),
+
+  // pad timers to two digits
+  pad: function(value, length) {
+    return (value.toString().length < length) ? this.pad('0' + value, length) : value;
+  },
 
 });

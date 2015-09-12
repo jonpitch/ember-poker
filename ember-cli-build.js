@@ -37,6 +37,15 @@ module.exports = function(defaults) {
   app.import('bower_components/materialize/dist/font/roboto/Roboto-Light.woff2', {
     destDir: 'font/roboto'
   });
+  app.import('bower_components/materialize/dist/font/material-design-icons/Material-Design-Icons.ttf', {
+    destDir: 'font/material-design-icons'
+  });
+  app.import('bower_components/materialize/dist/font/material-design-icons/Material-Design-Icons.woff', {
+    destDir: 'font/material-design-icons'
+  });
+  app.import('bower_components/materialize/dist/font/material-design-icons/Material-Design-Icons.woff2', {
+    destDir: 'font/material-design-icons'
+  });
   app.import('bower_components/materialize/dist/js/materialize.min.js');
 
   return app.toTree();
