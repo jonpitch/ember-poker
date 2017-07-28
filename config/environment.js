@@ -1,24 +1,19 @@
-/* jshint node: true */
+/* eslint-env node */
 
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'ember-poker',
     environment: environment,
-    baseURL: '/',
+    rootURL: '/',
     locationType: 'auto',
-    contentSecurityPolicy: {
-      'default-src': "'self'",
-      'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
-      'font-src': "'self' data: https://fonts.gstatic.com",
-      'connect-src': "'self'",
-      'img-src': "'self' data:",
-      'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com",
-      'media-src': "'self'"
-    },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
+      },
+      EXTEND_PROTOTYPES: {
+        // Prevent Ember Data from overriding Date.parse.
+        Date: false
       }
     },
 
@@ -38,7 +33,6 @@ module.exports = function(environment) {
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.baseURL = '/';
     ENV.locationType = 'none';
 
     // keep test console output quieter

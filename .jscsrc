@@ -1,7 +1,5 @@
 {
-  "preset": "airbnb",
+  "preset": "ember-suave",
   "requireCamelCaseOrUpperCaseIdentifiers": null,
-  "disallowQuotedKeysInObjects": null,
-  "requirePaddingNewLinesAfterBlocks": null,
-  "requireTrailingComma": null
+  "disallowConstOutsideModuleScope": null
 }

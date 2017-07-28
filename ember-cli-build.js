@@ -1,52 +1,23 @@
-/* global require, module */
+/* eslint-env node */
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
-  const env = EmberApp.env();
-
-  const app = new EmberApp(defaults, {
-    // ...
-    sassOptions: {
-      includePaths: ['bower_components/materialize/sass']
-    },
-
-    // jscs
-    jscsOptions: {
-      enabled: true,
-      esnext: true
-    }
-
+  var app = new EmberApp(defaults, {
+    // Add options here
   });
 
-  // bring in materialize
-  app.import('bower_components/materialize/dist/font/roboto/Roboto-Regular.tff', {
-    destDir: 'font/roboto'
-  });
-  app.import('bower_components/materialize/dist/font/roboto/Roboto-Regular.woff', {
-    destDir: 'font/roboto'
-  });
-  app.import('bower_components/materialize/dist/font/roboto/Roboto-Regular.woff2', {
-    destDir: 'font/roboto'
-  });
-  app.import('bower_components/materialize/dist/font/roboto/Roboto-Light.tff', {
-    destDir: 'font/roboto'
-  });
-  app.import('bower_components/materialize/dist/font/roboto/Roboto-Light.woff', {
-    destDir: 'font/roboto'
-  });
-  app.import('bower_components/materialize/dist/font/roboto/Roboto-Light.woff2', {
-    destDir: 'font/roboto'
-  });
-  app.import('bower_components/materialize/dist/font/material-design-icons/Material-Design-Icons.ttf', {
-    destDir: 'font/material-design-icons'
-  });
-  app.import('bower_components/materialize/dist/font/material-design-icons/Material-Design-Icons.woff', {
-    destDir: 'font/material-design-icons'
-  });
-  app.import('bower_components/materialize/dist/font/material-design-icons/Material-Design-Icons.woff2', {
-    destDir: 'font/material-design-icons'
-  });
-  app.import('bower_components/materialize/dist/js/materialize.min.js');
+  // Use `app.import` to add additional libraries to the generated
+  // output files.
+  //
+  // If you need to use different assets in different
+  // environments, specify an object as the first parameter. That
+  // object's keys should be the environment name and the values
+  // should be the asset to use in that environment.
+  //
+  // If the library that you are including contains AMD or ES6
+  // modules that you would like to import into your application
+  // please specify an object with the list of modules as keys
+  // along with the exports of each module as its value.
 
   return app.toTree();
 };
