@@ -1,0 +1,55 @@
+{{#paper-card}}
+  {{#paper-toolbar}}
+    {{#paper-toolbar-tools}}
+      <h2>Games</h2>
+    {{/paper-toolbar-tools}}
+  {{/paper-toolbar}}
+
+  {{#paper-list}}
+    {{#paper-item class="md-3-line" onClick=(action "start") as |controls|}}
+      <div class="md-list-item-text">
+        <h3>Game 1</h3>
+        <h4>5/10 + 1 - 20 minutes</h4>
+        <p>In Progress: Round 2 - MM:SS</p>
+      </div>
+      {{#controls.button secondary=true iconButton=true onClick=(action "delete")}}
+        {{paper-icon "delete"}}
+      {{/controls.button}}
+    {{/paper-item}}
+
+    {{paper-divider}}
+
+    {{#paper-item class="md-3-line"}}
+      <div class="md-list-item-text">
+        <h3>Game 2</h3>
+        <h4>5/10 + 1 - 20 minutes</h4>
+        <p>Last played 4 weeks ago</p>
+      </div>
+    {{/paper-item}}
+
+    {{paper-divider}}
+
+    {{#paper-item class="md-3-line"}}
+      <div class="md-list-item-text">
+        <h3>Game 3</h3>
+        <h4>5/10 + 1 - 20 minutes</h4>
+        <p>Last played 4 weeks ago</p>
+      </div>
+    {{/paper-item}}
+
+    {{paper-divider}}
+
+    {{#paper-item class="md-3-line"}}
+      <div class="md-list-item-text">
+        <h3>Game 4</h3>
+        <h4>5/10 + 1 - 20 minutes</h4>
+        <p>Last played 4 weeks ago</p>
+      </div>
+    {{/paper-item}}
+
+  {{/paper-list}}
+{{/paper-card}}
+
+{{#paper-button raised=true fab=true accent=true onClick=(action "add")}}
+  {{paper-icon "add" size=18}}
+{{/paper-button}}

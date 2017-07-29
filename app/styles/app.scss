@@ -1,0 +1,28 @@
+@import 'ember-paper';
+
+body > .ember-view > div.liquid-container > div.liquid-child {
+  min-height: 100vh;
+}
+
+/* fab float bottom right */
+button.md-fab {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  margin-bottom: 0;
+}
+
+/* less important toolbars */
+md-toolbar.secondary-toolbar {
+  // #f5f5f5 bg color
+  color: contrastColor($primary, 'contrast') !important;
+  background-color: color($primary, '200') !important;
+}
+
+/* form action row */
+div.form-action {
+  margin: 24px 0 24px 0;
+  button[type="submit"] {
+    margin: 0;
+  }
+}

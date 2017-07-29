@@ -10,6 +10,10 @@ const Router = AppRouter.extend({
 });
 
 Router.map(function() {
+  this.route('game', function() {
+    this.route('detail', { path: '/:id' });
+    this.route('add');
+  });
 });
 
 export default Router;
