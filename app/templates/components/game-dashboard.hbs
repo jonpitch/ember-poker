@@ -1,0 +1,119 @@
+{{#paper-card as |card|}}
+  {{#paper-toolbar}}
+    {{#paper-toolbar-tools}}
+      <h2>{{game.name}}</h2>
+    {{/paper-toolbar-tools}}
+  {{/paper-toolbar}}
+  {{#card.title as |title|}}
+    {{#title.text as |text|}}
+      {{#text.headline}}
+        <span class="minutes">
+          {{liquid-bind m class="animated-time"}}
+        </span>
+        <span class="seperator">
+          {{#liquid-bind false class="animated-time"}}:{{/liquid-bind}}
+        </span>
+        <span class="seconds">
+          {{liquid-bind s class="animated-time"}}
+        </span>
+      {{/text.headline}}
+      {{#text.subhead}}Round 1{{/text.subhead}}
+    {{/title.text}}
+  {{/card.title}}
+  {{#card.actions}}
+    {{#paper-button}}
+      {{#paper-button warn=true onClick=(action "promptToEndGame")}}
+        End Game
+      {{/paper-button}}
+    {{/paper-button}}
+    {{#paper-button}}
+      {{#paper-button raised=true primary=true}}Play{{/paper-button}}
+    {{/paper-button}}
+  {{/card.actions}}
+{{/paper-card}}
+
+<div class="layout-row layout-xs-column">
+  <div class="flex">
+    {{#paper-card as |card|}}
+      {{#paper-toolbar}}
+        {{#paper-toolbar-tools}}
+          <h2>Current Blinds</h2>
+        {{/paper-toolbar-tools}}
+      {{/paper-toolbar}}
+      {{#card.title as |title|}}
+        {{#title.text as |text|}}
+          {{#text.headline}}5/10{{/text.headline}}
+          {{#text.subhead}}No Ante{{/text.subhead}}
+        {{/title.text}}
+      {{/card.title}}
+    {{/paper-card}}
+  </div>
+
+  <div class="flex">
+    {{#paper-card as |card|}}
+      {{#paper-toolbar class="secondary-toolbar"}}
+        {{#paper-toolbar-tools}}
+          <h2>Up Next</h2>
+        {{/paper-toolbar-tools}}
+      {{/paper-toolbar}}
+      {{#card.title as |title|}}
+        {{#title.text as |text|}}
+          {{#text.headline}}10/20{{/text.headline}}
+          {{#text.subhead}}Ante: 1{{/text.subhead}}
+        {{/title.text}}
+      {{/card.title}}
+    {{/paper-card}}
+  </div>
+
+  <div class="flex">
+    {{#paper-card as |card|}}
+      {{#paper-toolbar class="secondary-toolbar"}}
+        {{#paper-toolbar-tools}}
+          <h2>Game Clock</h2>
+        {{/paper-toolbar-tools}}
+      {{/paper-toolbar}}
+      {{#card.title as |title|}}
+        {{#title.text as |text|}}
+          {{#text.headline}}HH:MM:SS{{/text.headline}}
+          {{#text.subhead}}Started: HH:MM{{/text.subhead}}
+        {{/title.text}}
+      {{/card.title}}
+    {{/paper-card}}
+  </div>
+</div>
+
+<span id="game-dashboard-animate-modal-origin"></span>
+{{#if showEndGameModal}}
+  {{#paper-dialog
+    fullscreen=false
+    onClose=(action "endGame")
+    openFrom="#game-dashboard-animate-modal-origin"
+    closeTo="#game-dashboard-animate-modal-origin"
+  }}
+
+    {{#paper-toolbar}}
+      {{#paper-toolbar-tools}}
+        <h2>Are you sure?</h2>
+        <span class="flex"></span>
+        {{#paper-button iconButton=true onClick=(action "closeEndGameModal")}}
+          {{paper-icon icon="close"}}
+        {{/paper-button}}
+      {{/paper-toolbar-tools}}
+    {{/paper-toolbar}}
+
+    {{#paper-dialog-content}}
+      <p>You will not be able to resume this game</p>
+    {{/paper-dialog-content}}
+
+    {{#paper-dialog-actions class="layout-row"}}
+      <span class="flex"></span>
+      {{#paper-button onClick=(action "closeEndGameModal")}}
+        Cancel
+      {{/paper-button}}
+      {{#paper-button onClick=(action "endGame")}}
+        OK
+      {{/paper-button}}
+    {{/paper-dialog-actions}}
+
+  {{/paper-dialog}}
+{{/if}}

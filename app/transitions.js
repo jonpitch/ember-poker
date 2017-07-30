@@ -1,26 +1,16 @@
 export default function() {
 
-  // transition from index to add new game
   this.transition(
     this.fromRoute('index'),
     this.toRoute('game'),
-    this.use('explode', {
-      pick: 'button.md-fab',
-      use: 'crossFade'
-    }, {
-      use: 'toLeft'
-    })
+    this.useAndReverse('fade', { duration: 250 })
   );
 
-  // reverse of add new game to index
   this.transition(
-    this.fromRoute('game'),
-    this.toRoute('index'),
-    this.use('explode', {
-      pick: 'button.md-fab',
-      use: 'crossFade'
-    }, {
-      use: 'toRight'
-    })
+    this.matchSelector('.animated-time'),
+    this.toValue(function(to, from) {
+      return to < from;
+    }),
+    this.use('toUp')
   );
 }

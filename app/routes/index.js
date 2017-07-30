@@ -5,7 +5,7 @@ const {
 
 export default Route.extend({
 
-  model(params) {
-    return this.store.findRecord('game', params.id);
+  model() {
+    return this.store.findAll('game');
   }
 });

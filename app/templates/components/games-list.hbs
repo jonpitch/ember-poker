@@ -6,50 +6,30 @@
   {{/paper-toolbar}}
 
   {{#paper-list}}
-    {{#paper-item class="md-3-line" onClick=(action "start") as |controls|}}
-      <div class="md-list-item-text">
-        <h3>Game 1</h3>
-        <h4>5/10 + 1 - 20 minutes</h4>
-        <p>In Progress: Round 2 - MM:SS</p>
-      </div>
-      {{#controls.button secondary=true iconButton=true onClick=(action "delete")}}
-        {{paper-icon "delete"}}
-      {{/controls.button}}
-    {{/paper-item}}
+    {{#each games as |game index|}}
+      {{#paper-item class="md-3-line" onClick=(action "start" game) as |controls|}}
+        <div class="md-list-item-text">
+          <h3>{{game.name}}</h3>
+          <h4>{{game.small}}/{{game.big}} - {{game.round}} minutes</h4>
+          {{! <p>In Progress: Round 2 - MM:SS</p> }}
+        </div>
+        {{#controls.button secondary=true iconButton=true onClick=(action "delete" game)}}
+          {{paper-icon "delete"}}
+        {{/controls.button}}
+      {{/paper-item}}
 
-    {{paper-divider}}
-
-    {{#paper-item class="md-3-line"}}
-      <div class="md-list-item-text">
-        <h3>Game 2</h3>
-        <h4>5/10 + 1 - 20 minutes</h4>
-        <p>Last played 4 weeks ago</p>
-      </div>
-    {{/paper-item}}
-
-    {{paper-divider}}
-
-    {{#paper-item class="md-3-line"}}
-      <div class="md-list-item-text">
-        <h3>Game 3</h3>
-        <h4>5/10 + 1 - 20 minutes</h4>
-        <p>Last played 4 weeks ago</p>
-      </div>
-    {{/paper-item}}
-
-    {{paper-divider}}
-
-    {{#paper-item class="md-3-line"}}
-      <div class="md-list-item-text">
-        <h3>Game 4</h3>
-        <h4>5/10 + 1 - 20 minutes</h4>
-        <p>Last played 4 weeks ago</p>
-      </div>
-    {{/paper-item}}
+      {{#if (not-eq lastItemIndex index)}}
+        {{paper-divider}}
+      {{/if}}
+    {{else}}
+      <p>No games</p>
+    {{/each}}
 
   {{/paper-list}}
 {{/paper-card}}
 
-{{#paper-button raised=true fab=true accent=true onClick=(action "add")}}
-  {{paper-icon "add" size=18}}
-{{/paper-button}}
+<div class="layout-row layout-align-end-end">
+  {{#paper-button raised=true fab=true accent=true onClick=(action "add")}}
+    {{paper-icon "add" size=18}}
+  {{/paper-button}}
+</div>

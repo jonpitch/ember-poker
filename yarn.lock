@@ -2708,6 +2708,13 @@ ember-load-initializers@^1.0.0:
   dependencies:
     ember-cli-babel "^6.0.0-beta.7"
 
+ember-localstorage-adapter@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ember-localstorage-adapter/-/ember-localstorage-adapter-1.0.0.tgz#985daadce0c149d0afd904a17ef67ae59a0b7e3d"
+  dependencies:
+    ember-cli-babel "^5.1.6"
+    ember-runtime-enumerable-includes-polyfill "^1.0.1"
+
 ember-maybe-import-regenerator@^0.1.5:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/ember-maybe-import-regenerator/-/ember-maybe-import-regenerator-0.1.6.tgz#35d41828afa6d6a59bc0da3ce47f34c573d776ca"
@@ -2791,6 +2798,13 @@ ember-router-service-polyfill@^1.0.1:
   resolved "https://registry.yarnpkg.com/ember-router-service-polyfill/-/ember-router-service-polyfill-1.0.1.tgz#a04d3d84c4bb6927e8438d367d9e40dfd40646f6"
   dependencies:
     ember-cli-babel "^6.0.0"
+
+ember-runtime-enumerable-includes-polyfill@^1.0.1:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/ember-runtime-enumerable-includes-polyfill/-/ember-runtime-enumerable-includes-polyfill-1.0.4.tgz#16a7612e347a2edf07da8b2f2f09dbfee70deba0"
+  dependencies:
+    ember-cli-babel "^5.1.6"
+    ember-cli-version-checker "^1.1.6"
 
 ember-runtime-enumerable-includes-polyfill@^2.0.0:
   version "2.0.0"
