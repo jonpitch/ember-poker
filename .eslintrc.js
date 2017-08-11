@@ -1,4 +1,7 @@
 module.exports = {
+  globals: {
+    server: true,
+  },
   root: true,
   parserOptions: {
     ecmaVersion: 2017,
@@ -9,5 +12,10 @@ module.exports = {
     browser: true
   },
   rules: {
+  },
+  globals: {
+    t: true,
+    server: true,
+    localStorage: true
   }
 };

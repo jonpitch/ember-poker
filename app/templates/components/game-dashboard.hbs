@@ -11,23 +11,27 @@
           {{liquid-bind m class="animated-time"}}
         </span>
         <span class="seperator">
-          {{#liquid-bind false class="animated-time"}}:{{/liquid-bind}}
+          {{#liquid-bind false class="animated-time"}}&#58;{{/liquid-bind}}
         </span>
         <span class="seconds">
           {{liquid-bind s class="animated-time"}}
         </span>
       {{/text.headline}}
-      {{#text.subhead}}Round 1{{/text.subhead}}
+      {{#text.subhead}}
+        {{t "components.game-dashboard.round" round=1}}
+      {{/text.subhead}}
     {{/title.text}}
   {{/card.title}}
   {{#card.actions}}
     {{#paper-button}}
       {{#paper-button warn=true onClick=(action "promptToEndGame")}}
-        End Game
+        {{t "components.game-dashboard.end"}}
       {{/paper-button}}
     {{/paper-button}}
     {{#paper-button}}
-      {{#paper-button raised=true primary=true}}Play{{/paper-button}}
+      {{#paper-button raised=true primary=true}}
+        {{t "components.game-dashboard.play"}}
+      {{/paper-button}}
     {{/paper-button}}
   {{/card.actions}}
 {{/paper-card}}
@@ -37,13 +41,17 @@
     {{#paper-card as |card|}}
       {{#paper-toolbar}}
         {{#paper-toolbar-tools}}
-          <h2>Current Blinds</h2>
+          <h2>{{t "components.game-dashboard.current"}}</h2>
         {{/paper-toolbar-tools}}
       {{/paper-toolbar}}
       {{#card.title as |title|}}
         {{#title.text as |text|}}
-          {{#text.headline}}5/10{{/text.headline}}
-          {{#text.subhead}}No Ante{{/text.subhead}}
+          {{#text.headline}}
+            {{t "components.game-dashboard.blinds" small=5 big=10}}
+          {{/text.headline}}
+          {{#text.subhead}}
+            {{t "components.game-dashboard.noAnte"}}
+          {{/text.subhead}}
         {{/title.text}}
       {{/card.title}}
     {{/paper-card}}
@@ -53,13 +61,17 @@
     {{#paper-card as |card|}}
       {{#paper-toolbar class="secondary-toolbar"}}
         {{#paper-toolbar-tools}}
-          <h2>Up Next</h2>
+          <h2>{{t "components.game-dashboard.next"}}</h2>
         {{/paper-toolbar-tools}}
       {{/paper-toolbar}}
       {{#card.title as |title|}}
         {{#title.text as |text|}}
-          {{#text.headline}}10/20{{/text.headline}}
-          {{#text.subhead}}Ante: 1{{/text.subhead}}
+          {{#text.headline}}
+            {{t "components.game-dashboard.blinds" small=10 big=20}}
+          {{/text.headline}}
+          {{#text.subhead}}
+            {{t "components.game-dashboard.ante" ante=1}}
+          {{/text.subhead}}
         {{/title.text}}
       {{/card.title}}
     {{/paper-card}}
@@ -69,13 +81,17 @@
     {{#paper-card as |card|}}
       {{#paper-toolbar class="secondary-toolbar"}}
         {{#paper-toolbar-tools}}
-          <h2>Game Clock</h2>
+          <h2>{{t "components.game-dashboard.clock"}}</h2>
         {{/paper-toolbar-tools}}
       {{/paper-toolbar}}
       {{#card.title as |title|}}
         {{#title.text as |text|}}
-          {{#text.headline}}HH:MM:SS{{/text.headline}}
-          {{#text.subhead}}Started: HH:MM{{/text.subhead}}
+          {{#text.headline}}
+            {{! TODO HH:MM:SS }}
+          {{/text.headline}}
+          {{#text.subhead}}
+            {{! TODO Started at HH:MM }}
+          {{/text.subhead}}
         {{/title.text}}
       {{/card.title}}
     {{/paper-card}}
@@ -93,7 +109,7 @@
 
     {{#paper-toolbar}}
       {{#paper-toolbar-tools}}
-        <h2>Are you sure?</h2>
+        <h2>{{t "components.game-dashboard.modal.title"}}</h2>
         <span class="flex"></span>
         {{#paper-button iconButton=true onClick=(action "closeEndGameModal")}}
           {{paper-icon icon="close"}}
@@ -102,16 +118,16 @@
     {{/paper-toolbar}}
 
     {{#paper-dialog-content}}
-      <p>You will not be able to resume this game</p>
+      <p>{{t "components.game-dashboard.modal.description"}}</p>
     {{/paper-dialog-content}}
 
     {{#paper-dialog-actions class="layout-row"}}
       <span class="flex"></span>
       {{#paper-button onClick=(action "closeEndGameModal")}}
-        Cancel
+        {{t "components.game-dashboard.modal.cancel"}}
       {{/paper-button}}
       {{#paper-button onClick=(action "endGame")}}
-        OK
+        {{t "components.game-dashboard.modal.ok"}}
       {{/paper-button}}
     {{/paper-dialog-actions}}
 

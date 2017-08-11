@@ -1,7 +1,7 @@
 {{#paper-card}}
   {{#paper-toolbar}}
     {{#paper-toolbar-tools}}
-      <h2>Games</h2>
+      <h2 data-test="title">{{t "components.games-list.title"}}</h2>
     {{/paper-toolbar-tools}}
   {{/paper-toolbar}}
 
@@ -10,7 +10,7 @@
       {{#paper-item class="md-3-line" onClick=(action "start" game) as |controls|}}
         <div class="md-list-item-text">
           <h3>{{game.name}}</h3>
-          <h4>{{game.small}}/{{game.big}} - {{game.round}} minutes</h4>
+          {{! <h4>small/big + ante - round time<h4> }}
           {{! <p>In Progress: Round 2 - MM:SS</p> }}
         </div>
         {{#controls.button secondary=true iconButton=true onClick=(action "delete" game)}}
@@ -22,7 +22,9 @@
         {{paper-divider}}
       {{/if}}
     {{else}}
-      <p>No games</p>
+      <p class="no-games" data-test="no-games">
+        {{t "components.games-list.empty"}}
+      </p>
     {{/each}}
 
   {{/paper-list}}

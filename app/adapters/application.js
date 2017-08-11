@@ -1,5 +1,6 @@
 import LSAdapter from 'ember-localstorage-adapter/adapters/ls-adapter';
+import config from 'ember-get-config';
 
 export default LSAdapter.extend({
-  namespace: 'ember-poker'
+  namespace: config.APP.namespace
 });

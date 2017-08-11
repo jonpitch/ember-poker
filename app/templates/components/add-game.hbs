@@ -1,7 +1,7 @@
 {{#paper-card}}
   {{#paper-toolbar}}
     {{#paper-toolbar-tools}}
-      <h2>New Game</h2>
+      <h2>{{t "components.add-game.title"}}</h2>
     {{/paper-toolbar-tools}}
   {{/paper-toolbar}}
 
@@ -11,7 +11,7 @@
     <div class="layout-row layout-align-center-stretch flex">
       <div class="flex-90">
         {{form.input
-          label="Game Name"
+          label=(t "components.add-game.form.name")
           value=name
           required=true
           onChange=(action (mut name))
@@ -24,7 +24,7 @@
     <div class="layout-row layout-align-center-stretch flex">
       <div class="flex-90">
         {{form.input
-          label="Small Blind"
+          label=(t "components.add-game.form.small")
           required=true
           value=small
           onChange=(action (mut small))
@@ -33,14 +33,14 @@
         }}
 
         {{form.input
-          label="Big Blind"
+          label=(t "components.add-game.form.big")
           disabled=true
           value=big
           onChange=null
         }}
 
         {{form.input
-          label="Round Time"
+          label=(t "components.add-game.form.round")
           required=true
           value=round
           onChange=(action (mut round))
@@ -54,7 +54,7 @@
     <div class="layout-row layout-align-center-stretch flex">
       <div class="flex-90">
         {{#paper-checkbox value=ante onChange=(action (mut ante))}}
-          Ante
+          {{t "components.add-game.form.ante"}}
         {{/paper-checkbox}}
       </div>
     </div>
@@ -62,7 +62,7 @@
     <div class="layout-row layout-align-center-stretch flex form-action">
       <div class="flex-90">
         {{#form.submit-button raised=true primary=true disabled=form.isInvalid}}
-          Add Game
+          {{t "components.add-game.form.submit"}}
         {{/form.submit-button}}
       </div>
     </div>

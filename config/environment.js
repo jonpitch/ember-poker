@@ -1,9 +1,9 @@
 /* eslint-env node */
 
 module.exports = function(environment) {
-  var ENV = {
+  let ENV = {
     modulePrefix: 'ember-poker',
-    environment: environment,
+    environment,
     rootURL: '/',
     locationType: 'auto',
     EmberENV: {
@@ -27,9 +27,12 @@ module.exports = function(environment) {
       'media-src': "'self'"
     },
 
+    i18n: {
+      defaultLocale: 'en'
+    },
+
     APP: {
-      // Here you can pass flags/options to your application instance
-      // when it is created
+      namespace: 'ember-poker'
     }
   };
 
@@ -50,6 +53,13 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+
+    ENV['ember-cli-mirage'] = {
+      enabled: true
+    };
+
+    // switch adapter namespace for testing
+    ENV.APP.namespace = 'ember-poker-testing';
   }
 
   if (environment === 'production') {

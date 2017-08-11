@@ -2,5 +2,22 @@
 'use strict';
 
 module.exports = {
-  extends: 'recommended'
+  extends: 'recommended',
+  rules: {
+    'bare-strings': true,
+    'block-indentation': 2,
+    'no-debugger': true,
+    'no-log': true,
+    'html-comments': true,
+    'nested-interactive': true,
+    'self-closing-void-elements': true,
+    'triple-curlies': true,
+    'link-rel-noopener': true,
+    'invalid-interactive': true,
+    'img-alt-attributes': true,
+    'style-concatenation': true,
+    'deprecated-inline-view-helper': true,
+    'simple-unless': true,
+    'unused-block-params': true
+  }
 };

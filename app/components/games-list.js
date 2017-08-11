@@ -2,8 +2,7 @@ import Ember from 'ember';
 const {
   Component,
   inject,
-  computed,
-  get
+  computed
 } = Ember;
 
 export default Component.extend({
@@ -23,7 +22,7 @@ export default Component.extend({
 
     // transition to game detail
     start(game) {
-      this.get('router').transitionTo('game.detail', { id: get(game, 'id') });
+      this.get('router').transitionTo('game.detail', game);
     },
 
     // delete game

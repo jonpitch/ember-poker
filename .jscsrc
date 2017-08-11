@@ -1,5 +1,4 @@
 {
   "preset": "ember-suave",
-  "requireCamelCaseOrUpperCaseIdentifiers": null,
   "disallowConstOutsideModuleScope": null
 }

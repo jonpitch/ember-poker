@@ -39,3 +39,10 @@ div.form-action {
     display: inline-block !important;
   }
 }
+
+/* empty games list */
+games-list {
+  p.no-games {
+    margin-left: 16px;
+  }
+}
