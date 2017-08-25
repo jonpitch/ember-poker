@@ -16,6 +16,7 @@ module.exports = {
   globals: {
     t: true,
     server: true,
-    localStorage: true
+    localStorage: true,
+    moment: true
   }
 };

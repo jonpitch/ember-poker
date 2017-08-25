@@ -18,20 +18,26 @@
         </span>
       {{/text.headline}}
       {{#text.subhead}}
-        {{t "components.game-dashboard.round" round=1}}
+        {{t "components.game-dashboard.round" round=game.level}}
       {{/text.subhead}}
     {{/title.text}}
   {{/card.title}}
   {{#card.actions}}
     {{#paper-button}}
       {{#paper-button warn=true onClick=(action "promptToEndGame")}}
-        {{t "components.game-dashboard.end"}}
+        {{t "components.game-dashboard.stop"}}
       {{/paper-button}}
     {{/paper-button}}
     {{#paper-button}}
-      {{#paper-button raised=true primary=true}}
-        {{t "components.game-dashboard.play"}}
-      {{/paper-button}}
+      {{#if game.running}}
+        {{#paper-button raised=true primary=true onClick=(action "pause")}}
+          {{t "components.game-dashboard.pause"}}
+        {{/paper-button}}
+      {{else}}
+        {{#paper-button raised=true primary=true onClick=(action "play")}}
+          {{t "components.game-dashboard.play"}}
+        {{/paper-button}}
+      {{/if}}
     {{/paper-button}}
   {{/card.actions}}
 {{/paper-card}}
@@ -47,10 +53,14 @@
       {{#card.title as |title|}}
         {{#title.text as |text|}}
           {{#text.headline}}
-            {{t "components.game-dashboard.blinds" small=5 big=10}}
+            {{t "components.game-dashboard.blinds" small=currentSmall big=currentBig}}
           {{/text.headline}}
           {{#text.subhead}}
-            {{t "components.game-dashboard.noAnte"}}
+            {{#if game.ante}}
+              {{t "components.game-dashboard.ante" ante=currentAnte}}
+            {{else}}
+              {{t "components.game-dashboard.noAnte"}}
+            {{/if}}
           {{/text.subhead}}
         {{/title.text}}
       {{/card.title}}
@@ -67,10 +77,14 @@
       {{#card.title as |title|}}
         {{#title.text as |text|}}
           {{#text.headline}}
-            {{t "components.game-dashboard.blinds" small=10 big=20}}
+            {{t "components.game-dashboard.blinds" small=nextSmall big=nextBig}}
           {{/text.headline}}
           {{#text.subhead}}
-            {{t "components.game-dashboard.ante" ante=1}}
+            {{#if game.ante}}
+              {{t "components.game-dashboard.ante" ante=nextAnte}}
+            {{else}}
+              {{t "components.game-dashboard.noAnte"}}
+            {{/if}}
           {{/text.subhead}}
         {{/title.text}}
       {{/card.title}}
@@ -90,7 +104,7 @@
             {{! TODO HH:MM:SS }}
           {{/text.headline}}
           {{#text.subhead}}
-            {{! TODO Started at HH:MM }}
+            {{! TODO HH:MM:SS }}
           {{/text.subhead}}
         {{/title.text}}
       {{/card.title}}
@@ -102,7 +116,7 @@
 {{#if showEndGameModal}}
   {{#paper-dialog
     fullscreen=false
-    onClose=(action "endGame")
+    onClose=(action "stop")
     openFrom="#game-dashboard-animate-modal-origin"
     closeTo="#game-dashboard-animate-modal-origin"
   }}
@@ -126,7 +140,7 @@
       {{#paper-button onClick=(action "closeEndGameModal")}}
         {{t "components.game-dashboard.modal.cancel"}}
       {{/paper-button}}
-      {{#paper-button onClick=(action "endGame")}}
+      {{#paper-button onClick=(action "stop")}}
         {{t "components.game-dashboard.modal.ok"}}
       {{/paper-button}}
     {{/paper-dialog-actions}}

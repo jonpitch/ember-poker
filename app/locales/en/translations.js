@@ -19,13 +19,15 @@ export default {
     'game-dashboard': {
       round: 'Round {{round}}',
       play: 'Play',
-      end: 'End Game',
+      pause: 'Pause',
+      stop: 'End Game',
       current: 'Current Blinds',
       blinds: '{{small}}/{{big}}',
       next: 'Up Next',
       noAnte: 'No Ante',
       ante: 'Ante: {{ante}}',
       clock: 'Game Clock',
+      startedAt: 'Started: {{when}}',
       modal: {
         title: 'Are you sure?',
         description: 'You will not be able to resume this game',
