@@ -8,9 +8,11 @@ import {
 } from 'ember-cli-page-object';
 
 const url = '/';
+const addUrl = '/game/add';
 
 export default create({
   url,
+  addUrl,
   visit: visitable(url),
 
   title: {
@@ -32,14 +34,15 @@ export default create({
   },
 
   games: collection({
-    itemScope: 'games-list md-list > md-list-item',
+    itemScope: 'md-list-item.game-item',
     item: {
-      click: clickable(),
+      click: clickable('> div > button'),
       name: {
         scope: 'h3',
         text: text(),
         isVisible: isVisible()
-      }
+      },
+      delete: clickable('md-icon[aria-label="delete"]')
     }
   })
 });

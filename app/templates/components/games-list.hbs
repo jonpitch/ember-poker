@@ -7,13 +7,17 @@
 
   {{#paper-list}}
     {{#each games as |game index|}}
-      {{#paper-item class="md-3-line" onClick=(action "start" game) as |controls|}}
+      {{#paper-item class="md-3-line game-item" onClick=(action "start" game) as |controls|}}
         <div class="md-list-item-text">
           <h3>{{game.name}}</h3>
           {{! <h4>small/big + ante - round time<h4> }}
           {{! <p>In Progress: Round 2 - MM:SS</p> }}
         </div>
-        {{#controls.button secondary=true iconButton=true onClick=(action "delete" game)}}
+        {{#controls.button
+          secondary=true
+          iconButton=true
+          onClick=(action "delete" game)
+        }}
           {{paper-icon "delete"}}
         {{/controls.button}}
       {{/paper-item}}

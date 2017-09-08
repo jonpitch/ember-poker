@@ -30,6 +30,7 @@ export default Component.extend({
     delete(game) {
       game.destroyRecord();
       game.save();
+      this.notifyPropertyChange('lastItemIndex');
     }
   }
 });

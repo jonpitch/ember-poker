@@ -11,6 +11,7 @@
     <div class="layout-row layout-align-center-stretch flex">
       <div class="flex-90">
         {{form.input
+          id="game-name"
           label=(t "components.add-game.form.name")
           value=name
           required=true
@@ -24,6 +25,7 @@
     <div class="layout-row layout-align-center-stretch flex">
       <div class="flex-90">
         {{form.input
+          id="small-blind"
           label=(t "components.add-game.form.small")
           required=true
           value=small
@@ -33,6 +35,7 @@
         }}
 
         {{form.input
+          id="big-blind"
           label=(t "components.add-game.form.big")
           disabled=true
           value=big
@@ -40,6 +43,7 @@
         }}
 
         {{form.input
+          id="round-time"
           label=(t "components.add-game.form.round")
           required=true
           value=round
@@ -53,7 +57,7 @@
     {{! game name }}
     <div class="layout-row layout-align-center-stretch flex">
       <div class="flex-90">
-        {{#paper-checkbox value=ante onChange=(action (mut ante))}}
+        {{#paper-checkbox id="ante" value=ante onChange=(action (mut ante))}}
           {{t "components.add-game.form.ante"}}
         {{/paper-checkbox}}
       </div>
@@ -61,7 +65,7 @@
 
     <div class="layout-row layout-align-center-stretch flex form-action">
       <div class="flex-90">
-        {{#form.submit-button raised=true primary=true disabled=form.isInvalid}}
+        {{#form.submit-button id="add-game" raised=true primary=true disabled=form.isInvalid}}
           {{t "components.add-game.form.submit"}}
         {{/form.submit-button}}
       </div>
