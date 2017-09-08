@@ -7,11 +7,17 @@ module.exports = {
     ecmaVersion: 2017,
     sourceType: 'module'
   },
-  extends: 'eslint:recommended',
+  extends: [
+    'eslint:recommended',
+    'plugin:ember/recommended'
+  ],
   env: {
     browser: true
   },
   rules: {
+    'ember/named-functions-in-promises': [2, {
+      allowSimpleArrowFunction: true
+    }]
   },
   globals: {
     t: true,

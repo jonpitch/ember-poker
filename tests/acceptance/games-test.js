@@ -1,21 +1,10 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'ember-poker/tests/helpers/module-for-acceptance';
-import startApp from 'ember-poker/tests/helpers/start-app';
-import destroyApp from 'ember-poker/tests/helpers/destroy-app';
 import page from 'ember-poker/tests/pages/games';
 import emptyScenario from 'ember-poker/mirage/scenarios/empty';
 import gamesScenario from 'ember-poker/mirage/scenarios/games';
 
-let application;
-
-moduleForAcceptance('Acceptance | games', {
-  beforeEach() {
-    application = startApp();
-  },
-  afterEach() {
-    destroyApp(application);
-  }
-});
+moduleForAcceptance('Acceptance | games', { });
 
 test('can add a new game', async function(assert) {
   emptyScenario(server);

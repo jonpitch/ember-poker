@@ -2,27 +2,28 @@ import Ember from 'ember';
 const {
   Component,
   inject,
-  computed
+  computed,
+  get
 } = Ember;
 
 export default Component.extend({
-  tagName: 'games-list',
   router: inject.service(),
+  tagName: 'games-list',
 
   lastItemIndex: computed('games', function() {
-    return this.get('games.length') - 1;
+    return get(this, 'games.length') - 1;
   }),
 
   actions: {
 
     // transition to add game
     add() {
-      this.get('router').transitionTo('game.add');
+      get(this, 'router').transitionTo('game.add');
     },
 
     // transition to game detail
     start(game) {
-      this.get('router').transitionTo('game.detail', game);
+      get(this, 'router').transitionTo('game.detail', game);
     },
 
     // delete game
